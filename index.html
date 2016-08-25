@@ -39,10 +39,10 @@
       </div>
 
       <div id="btn-options" class="row center-align">
-        <a class="waves-effect waves-light btn">List price</a>
-        <a class="waves-effect waves-light btn">DOMM</a>
-        <a class="waves-effect waves-light btn">DOMP</a>
-        <a class="waves-effect waves-light btn">Closed</a>
+        <a id="btn1" class="waves-effect waves-light btn">List price</a>
+        <a id="btn2" class="waves-effect waves-light btn">DOMM</a>
+        <a id="btn3" class="waves-effect waves-light btn">DOMP</a>
+        <a id="btn4" class="waves-effect waves-light btn">Closed</a>
       </div>
 
       <!-- ============================================= -->
@@ -56,7 +56,8 @@
             height = 500 - margin.top - margin.bottom;
 
           var x = d3.scaleTime().range([0, width]);
-          var y = d3.scaleLinear().range([height, 0]);
+          var y = d3.scaleTime().range([height, 0]);
+          // var y = d3.scaleLinear().range([height, 0]);
 
           var svg = d3.select("body")
             .append("svg")
@@ -64,18 +65,36 @@
               .attr("height", height + margin.top + margin.bottom)
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            //.click("#btn1");
+
 
           // svg.append("g")
           //     .call(d3.axisBottom(x));
 
-          svg.append("g")
-              .call(d3.axisLeft(y))
-            .append("text")
-              .attr("transform", "rotate(-90)")
-              .attr("y", 6)
-              .attr("dy", ".71em")
-              .style("text-anchor", "end")
-              .text("List price");
+          // svg.append("g")
+          //     .call(d3.axisLeft(y))
+          //   .append("text")
+          //     .attr("transform", "rotate(-90)")
+          //     .attr("y", 6)
+          //     .attr("dy", ".71em")
+          //     .style("text-anchor", "end")
+          //     .text("List price");
+
+          d3.tsv("listPrice.tsv", function(error, data) {
+            if (error) throw error;
+
+            x.domain(data.map(function(d) { return d.year; }));
+            y.domain([0, d3.max(data, function(d) { return d.price; })]);
+
+            svg.selectAll(".bar")
+                .data(data)
+              .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(d.year); })
+                .attr("width", 5)
+                .attr("y", function(d) { return y(d.price); })
+                .attr("height", function(d) { return height - y(d.price); });
+          });
 
         </script>
       </div>
