@@ -16,46 +16,13 @@
     <!-- Stylesheets                                   -->
     <!-- ============================================= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+    <link rel="stylesheet" href="d3_custom.css"/>
 
     <!-- ============================================= -->
     <!-- Document Title                                -->
     <!-- ============================================= -->
-    <title>D3 Project</title>
+    <title>District of Columbia Real Estate Market Analysis using D3</title>
   </head>
-
-  <style>
-    .axis path {
-      display: none;
-    }
-
-    .line {
-      fill: none;
-      stroke: royalblue;
-      stroke-width: 3px;
-    }
-
-    .bar {
-      fill: royalblue;
-    }
-
-    .bar:hover {
-      fill: skyblue;
-    }
-
-    .tooltip {
-      position: absolute;
-      text-align: center;
-      width: 60px;
-      height: 18px;
-      padding: 2px;
-      font: 12px sans-serif;
-      background: lightsteelblue;
-      border: 0px;
-      border-radius: 8px;
-      pointer-events: none;
-    }
-
-  </style>
 
   <body>
     <!-- ============================================= -->
@@ -64,7 +31,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    <script type="text/javascript" src="./test1.js"></script>
 
     <div class="container">
       <div id="title" class="row center-align">
@@ -80,17 +46,17 @@
           <div class="col s12">
             <ul class="tabs">
               <li class="tab col s3"><a class="active" href="#tab1">List vs. Sales Price</a></li>
-              <li class="tab col s3"><a href="#tab2">DOMP vs. DOMM</a></li>
+              <li class="tab col s3"><a class="" href="#tab2">DOMP vs. DOMM</a></li>
             </ul>
           </div>
 
           <!-- ============================================= -->
-          <!-- D3 List vs. Sales Price Code                  -->
+          <!-- D3 Code (List vs. Sales Price)                -->
           <!-- ============================================= -->
           <div id="tab1" class="col s12">
             <script>
-              var margin = { top: 40, right: 20, bottom: 30, left: 300 },
-                width = 1150 - margin.left - margin.right,
+              var margin = { top: 40, right: 20, bottom: 30, left: 50 },
+                width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
               var xAxis = d3.scaleBand()
@@ -100,24 +66,20 @@
               var yAxis = d3.scaleLinear()
                 .range([height, 0]);
 
-              var svg = d3.select("body")
+              var svg = d3.select("#tab1")
                 .append("svg")
                   .attr("width", width + margin.left + margin.right)
                   .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-              var div = d3.select("body")
+              var div = d3.select("#tab1")
                 .append("div")
                   .attr("class", "tooltip")
                   .style("opacity", 0);
 
               d3.json("data.json", function(error, data) {
                 if (error) throw error;
-
-                data.forEach(function(d) {
-                  d.avgListPrice = +d.avgListPrice;
-                });
 
                 xAxis.domain(data.map(function(d) { return d.year; }));
                 yAxis.domain([0, d3.max(data, function(d) { return d.avgListPrice; })]);
@@ -145,77 +107,76 @@
                   });
 
                 svg.append("g")
-                    .call(d3.axisBottom(xAxis))
-                    .attr("class", "axis axis--x")
-                    .attr("transform", "translate(0," + height + ")");
+                  .call(d3.axisBottom(xAxis))
+                  .attr("class", "axis axis--x")
+                  .attr("transform", "translate(0," + height + ")");
 
                 svg.append("g")
-                    .call(d3.axisLeft(yAxis));
+                  .call(d3.axisLeft(yAxis));
               });
             </script>
-          </div>
+          </div> <!-- tab1 -->
 
           <!-- ============================================= -->
-          <!-- D3 DOMP vs. DOMM Code                         -->
+          <!-- D3 Code (DOMP vs. DOMM)                       -->
           <!-- ============================================= -->
           <div id="tab2" class="col s12">
-            <!-- // <script>
-            //   var margin = {top: 40, right: 20, bottom: 30, left: 300},
-            //     width = 1150 - margin.left - margin.right,
-            //     height = 500 - margin.top - margin.bottom;
-            //
-            //   var xAxis = d3.scaleBand()
-            //     .range([0, width])
-            //     .padding(0.1);
-            //
-            //   var yAxis = d3.scaleLinear()
-            //     .range([height, 0]);
-            //
-            //   var dompLine = d3.line()
-            //     .x(function(d) { return xAxis(d.year); })
-            //     .y(function(d) { return yAxis(d.avgDOMP); });
-            //
-            //   var dommLine = d3.line()
-            //     .x(function(d) { return xAxis(d.year); })
-            //     .y(function(d) { return yAxis(d.avgDOMM); });
-            //
-            //   var svg = d3.select("body")
-            //     .append("svg")
-            //       .attr("width", width + margin.left + margin.right)
-            //       .attr("height", height + margin.top + margin.bottom)
-            //     .append("g")
-            //       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            //
-            //   d3.json("data.json", function(error, data) {
-            //     if (error) throw error;
-            //
-            //     xAxis.domain(data.map(function(d) { return d.year; }));
-            //     yAxis.domain([0, d3.max(data, function(d) { return Math.max(d.avgDOMP, d.avgDOMM); })]);
-            //
-            //     svg.append("path")
-            //       .data([data])
-            //       .attr("class", "line")
-            //       .attr("d", dompLine);
-            //
-            //     svg.append("path")
-            //       .data([data])
-            //       .attr("class", "line")
-            //       .style("stroke", "skyblue")
-            //       .attr("d", dommLine);
-            //
-            //     svg.append("g")
-            //         .call(d3.axisBottom(xAxis))
-            //         .attr("class", "axis axis--x")
-            //         .attr("transform", "translate(0," + height + ")");
-            //
-            //     svg.append("g")
-            //         .call(d3.axisLeft(yAxis));
-            //
-            //   });
-            // </script> -->
-          </div>
-        </div>
-      </div>
-    </div>
+            <script>
+              var margin = {top: 40, right: 20, bottom: 30, left: 50},
+                width = 960 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+              var xAxis = d3.scaleBand()
+                .range([0, width])
+                .padding(0.1);
+
+              var yAxis = d3.scaleLinear()
+                .range([height, 0]);
+
+              var dompLine = d3.line()
+                .x(function(d) { return xAxis(d.year); })
+                .y(function(d) { return yAxis(d.avgDOMP); });
+
+              var dommLine = d3.line()
+                .x(function(d) { return xAxis(d.year); })
+                .y(function(d) { return yAxis(d.avgDOMM); });
+
+              var svg = d3.select("#tab2")
+                .append("svg")
+                  .attr("width", width + margin.left + margin.right)
+                  .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+              d3.json("data.json", function(error, data) {
+                if (error) throw error;
+
+                xAxis.domain(data.map(function(d) { return d.year; }));
+                yAxis.domain([0, d3.max(data, function(d) { return Math.max(d.avgDOMP, d.avgDOMM); })]);
+
+                svg.append("path")
+                  .data([data])
+                  .attr("class", "line")
+                  .attr("d", dompLine);
+
+                svg.append("path")
+                  .data([data])
+                  .attr("class", "line")
+                  .style("stroke", "skyblue")
+                  .attr("d", dommLine);
+
+                svg.append("g")
+                  .call(d3.axisBottom(xAxis))
+                  .attr("class", "axis axis--x")
+                  .attr("transform", "translate(0," + height + ")");
+
+                svg.append("g")
+                  .call(d3.axisLeft(yAxis));
+              });
+            </script>
+          </div> <!-- tab2 -->
+        </div> <!-- row -->
+      </div> <!-- content -->
+    </div> <!-- container -->
   </body>
 </html>
