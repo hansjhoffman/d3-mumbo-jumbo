@@ -96,18 +96,20 @@
               .attr("class", "tooltip")
               .style("opacity", 0);
 
-          //d3.select("#btn1").on("click", console.log("clicked"));
+          d3.select("#btn1").on("click", function() {
+            console.log("clicked")
+          });
 
-          d3.csv("listPrice.csv", function(error, data) {
+          d3.json("data.json", function(error, data) {
             if (error) throw error;
 
             // format data
             data.forEach(function(d) {
-              d.price = +d.price;
+              d.avgListPrice = +d.avgListPrice;
             });
 
             xAxis.domain(data.map(function(d) { return d.year; }));
-            yAxis.domain([0, d3.max(data, function(d) { return d.price; })]);
+            yAxis.domain([0, d3.max(data, function(d) { return d.avgListPrice; })]);
 
             // iterate and draw values
             svg.selectAll(".bar")
@@ -116,17 +118,21 @@
                 .attr("class", "bar")
                 .attr("x", function(d) { return xAxis(d.year); })
                 .attr("width", xAxis.bandwidth())
-                .attr("y", function(d) { return yAxis(d.price); })
-                .attr("height", function(d) { return height - yAxis(d.price); })
+                .attr("y", function(d) { return yAxis(d.avgListPrice); })
+                .attr("height", function(d) { return height - yAxis(d.avgListPrice); })
               .on('mouseover', function(d) {
                 div.transition()
                   .duration(200)
                   .style("opacity", .9)
-                .text("$" + d3.format(",")(d.price))
+                .text("$" + d3.format(",")(d.avgListPrice))
                   .style("left", (d3.event.pageX) + "px")
-                  .style("top", (d3.event.pageY - 28) + "px");
+                  .style("top", (d3.event.pageY - 28) + "px")
+              })
+              .on("mouseout", function(d) {
+                div.transition()
+                  .duration(500)
+                  .style("opacity", 0)
               });
-                //.on('mouseout', tip.hide);
 
             // xAxis
             svg.append("g")
