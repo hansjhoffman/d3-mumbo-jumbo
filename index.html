@@ -59,14 +59,12 @@
     <div class="container">
       <div id="title" class="row center-align">
         <h2>District of Colubmia</h2>
-        <h5>Sold Properties 1998-2015</h5>
+        <h5>Property Analysis [1998-2015]</h5>
       </div>
 
       <div class="row center-align">
-        <a id="btn1" class="waves-effect waves-light btn">List price</a>
-        <a id="btn2" class="waves-effect waves-light btn">DOMM</a>
-        <a id="btn3" class="waves-effect waves-light btn">DOMP</a>
-        <a id="btn4" class="waves-effect waves-light btn">Closed</a>
+        <a id="btn1" class="waves-effect waves-light btn">List vs Sale Price</a>
+        <a id="btn2" class="waves-effect waves-light btn">DOMM vs DOMP</a>
       </div>
 
       <!-- ============================================= -->
@@ -103,7 +101,6 @@
           d3.json("data.json", function(error, data) {
             if (error) throw error;
 
-            // format data
             data.forEach(function(d) {
               d.avgListPrice = +d.avgListPrice;
             });
@@ -111,7 +108,6 @@
             xAxis.domain(data.map(function(d) { return d.year; }));
             yAxis.domain([0, d3.max(data, function(d) { return d.avgListPrice; })]);
 
-            // iterate and draw values
             svg.selectAll(".bar")
                 .data(data)
               .enter().append("rect")
@@ -134,12 +130,10 @@
                   .style("opacity", 0)
               });
 
-            // xAxis
             svg.append("g")
                 .call(d3.axisBottom(xAxis))
                 .attr("transform", "translate(0," + height + ")");
 
-            // yAxis
             svg.append("g")
                 .call(d3.axisLeft(yAxis));
           });
