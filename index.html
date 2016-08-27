@@ -23,6 +23,17 @@
     <title>D3 Project</title>
   </head>
 
+  <style>
+    .bar {
+      fill: orange;
+    }
+
+    .bar:hover {
+      fill: orangered;
+    }
+
+  </style>
+
   <body>
     <!-- ============================================= -->
     <!-- External JavaScripts                          -->
@@ -30,7 +41,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    <!-- // <script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
+    <script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
     <div class="container">
       <div id="title" class="row center-align">
@@ -38,7 +49,7 @@
         <h5>Sold Properties 1998-2015</h5>
       </div>
 
-      <div id="btn-options" class="row center-align">
+      <div class="row center-align">
         <a id="btn1" class="waves-effect waves-light btn">List price</a>
         <a id="btn2" class="waves-effect waves-light btn">DOMM</a>
         <a id="btn3" class="waves-effect waves-light btn">DOMP</a>
@@ -55,9 +66,8 @@
             width = 1150 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-          var x = d3.scaleTime().range([0, width]);
-          var y = d3.scaleTime().range([height, 0]);
-          // var y = d3.scaleLinear().range([height, 0]);
+          var x = d3.scaleLinear().range([0, width]);
+          var y = d3.scaleLinear().range([height, 0]);
 
           var svg = d3.select("body")
             .append("svg")
@@ -65,23 +75,21 @@
               .attr("height", height + margin.top + margin.bottom)
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            //.click("#btn1");
 
+          //d3.select("#btn1").on("click", console.log("clicked"));
 
-          // svg.append("g")
-          //     .call(d3.axisBottom(x));
+          // y axis
+          svg.append("g")
+              .call(d3.axisBottom(x));
 
-          // svg.append("g")
-          //     .call(d3.axisLeft(y))
-          //   .append("text")
-          //     .attr("transform", "rotate(-90)")
-          //     .attr("y", 6)
-          //     .attr("dy", ".71em")
-          //     .style("text-anchor", "end")
-          //     .text("List price");
+          // x axis
+          svg.append("g")
+              .call(d3.axisLeft(y))
 
-          d3.tsv("listPrice.tsv", function(error, data) {
+          // iterate and draw values
+          d3.csv("listPrice.csv", type, function(error, data) {
             if (error) throw error;
+            console.log(data);
 
             x.domain(data.map(function(d) { return d.year; }));
             y.domain([0, d3.max(data, function(d) { return d.price; })]);
@@ -90,12 +98,20 @@
                 .data(data)
               .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function(d) { return x(d.year); })
-                .attr("width", 5)
+                .attr("x", function(d) { return x(d.year) / 25; })
+                .attr("width", 30)
                 .attr("y", function(d) { return y(d.price); })
-                .attr("height", function(d) { return height - y(d.price); });
+                .attr("height", function(d) { return height - y(d.price); })
+                //.on('mouseover', function(d) { console.log(d.year) })
+                //.on('mouseout', tip.hide);
           });
 
+          function type(d) {
+            d.price = +d.price;
+            d.year = +d.year;
+
+            return d;
+          }
         </script>
       </div>
     </div>
