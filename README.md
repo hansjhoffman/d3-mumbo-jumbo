@@ -1,5 +1,5 @@
 # d3-mumbo-jumbo
-Modeling District of Columbia Residential Real Estate Market from 1998-2015 using D3.js
+Modeling District of Columbia Residential real estate market from 1998-2015 using D3.js
 
 ## Resources
 - D3: https://d3js.org/d3.v4.min.js
