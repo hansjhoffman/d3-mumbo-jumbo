@@ -2,8 +2,8 @@
 Modeling District of Columbia Residential Real Estate Market from 1998-2015 using D3.js
 
 ## Resources
-D3: https://d3js.org/d3.v4.min.js
-Materialize: http://materializecss.com/
+- D3: https://d3js.org/d3.v4.min.js
+- Materialize: http://materializecss.com/
 
 ## Screenshots
 ![Alt text](/screenshots/tab1.png?raw=true "List vs Close Price")
