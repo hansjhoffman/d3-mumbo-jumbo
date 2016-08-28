@@ -1,110 +1,146 @@
 [
   {
     "year": "1998",
-    "avgListPrice": 274482,
+    "avgListPrice": 280917,
+    "avgClosePrice": 265005,
     "avgDOMM": 77,
-    "avgDOMP": 106
+    "avgDOMP": 106,
+    "totalSold": 4058
   },
   {
     "year": "1999",
-    "avgListPrice": 281645,
+    "avgListPrice": 286052,
+    "avgClosePrice": 275838,
     "avgDOMM": 62,
-    "avgDOMP": 77
+    "avgDOMP": 77,
+    "totalSold": 4488
   },
   {
     "year": "2000",
-    "avgListPrice": 306621,
+    "avgListPrice": 308762,
+    "avgClosePrice": 302488,
     "avgDOMM": 55,
-    "avgDOMP": 67
+    "avgDOMP": 67,
+    "totalSold": 4774
   },
   {
     "year": "2001",
-    "avgListPrice": 357763,
+    "avgListPrice": 386747,
+    "avgClosePrice": 354716,
     "avgDOMM": 51,
-    "avgDOMP": 60
+    "avgDOMP": 60,
+    "totalSold": 4769
   },
   {
     "year": "2002",
-    "avgListPrice": 407409,
+    "avgListPrice": 533727,
+    "avgClosePrice": 405899,
     "avgDOMM": 46,
-    "avgDOMP": 53
+    "avgDOMP": 53,
+    "totalSold": 5000
   },
   {
     "year": "2003",
-    "avgListPrice": 444969,
+    "avgListPrice": 457003,
+    "avgClosePrice": 443339,
     "avgDOMM": 39,
-    "avgDOMP": 46
+    "avgDOMP": 46,
+    "totalSold": 5000
   },
   {
     "year": "2004",
-    "avgListPrice": 510189,
+    "avgListPrice": 518018,
+    "avgClosePrice": 513879,
     "avgDOMM": 29,
-    "avgDOMP": 34
+    "avgDOMP": 34,
+    "totalSold": 5000
   },
   {
     "year": "2005",
-    "avgListPrice": 625969,
+    "avgListPrice": 635728,
+    "avgClosePrice": 628444,
     "avgDOMM": 27,
-    "avgDOMP": 33
+    "avgDOMP": 33,
+    "totalSold": 4947
   },
   {
     "year": "2006",
-    "avgListPrice": 658915,
+    "avgListPrice": 676811,
+    "avgClosePrice": 644508,
     "avgDOMM": 45,
-    "avgDOMP": 56
+    "avgDOMP": 56,
+    "totalSold": 3975
   },
   {
     "year": "2007",
-    "avgListPrice": 706737,
+    "avgListPrice": 728225,
+    "avgClosePrice": 690503,
     "avgDOMM": 53,
-    "avgDOMP": 69
+    "avgDOMP": 69,
+    "totalSold": 3442
   },
   {
     "year": "2008",
-    "avgListPrice": 700638,
+    "avgListPrice": 729046,
+    "avgClosePrice": 674273,
     "avgDOMM": 63,
-    "avgDOMP": 85
+    "avgDOMP": 85,
+    "totalSold": 2744
   },
   {
     "year": "2009",
-    "avgListPrice": 671958,
+    "avgListPrice": 700487,
+    "avgClosePrice": 641648,
     "avgDOMM": 65,
-    "avgDOMP": 86
+    "avgDOMP": 86,
+    "totalSold": 2704
   },
   {
     "year": "2010",
-    "avgListPrice": 680933,
+    "avgListPrice": 704575,
+    "avgClosePrice": 658497,
     "avgDOMM": 51,
-    "avgDOMP": 65
+    "avgDOMP": 65,
+    "totalSold": 3029
   },
   {
     "year": "2011",
-    "avgListPrice": 678068,
+    "avgListPrice": 699143,
+    "avgClosePrice": 656004,
     "avgDOMM": 54,
-    "avgDOMP": 72
+    "avgDOMP": 72,
+    "totalSold": 3166
   },
   {
     "year": "2012",
-    "avgListPrice": 716495,
+    "avgListPrice": 731738,
+    "avgClosePrice": 701650,
     "avgDOMM": 41,
-    "avgDOMP": 54
+    "avgDOMP": 54,
+    "totalSold": 3382
   },
   {
     "year": "2013",
-    "avgListPrice": 749430,
+    "avgListPrice": 761888,
+    "avgClosePrice": 743666,
     "avgDOMM": 31,
-    "avgDOMP": 40
+    "avgDOMP": 40,
+    "totalSold": 3854
   },
   {
     "year": "2014",
-    "avgListPrice": 781842,
+    "avgListPrice": 793168,
+    "avgClosePrice": 773216,
     "avgDOMM": 29,
-    "avgDOMP": 36
+    "avgDOMP": 36,
+    "totalSold": 3907
   },
   {
     "year": "2015",
-    "avgListPrice": 812988,
+    "avgListPrice": 825514,
+    "avgClosePrice": 808311,
     "avgDOMM": 29,
-    "avgDOMP": 36
+    "avgDOMP": 36,
+    "totalSold": 4039
   }
 ]
