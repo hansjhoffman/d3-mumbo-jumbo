@@ -1,7 +1,7 @@
 # d3-mumbo-jumbo
 My D3.js projects:
 - Modeling District of Columbia Residential real estate market from 1998-2015
-- Statistical Analysis of a Tesla Model S
+- Statistical Analysis of a Tesla Model S (with tooltip)
 
 ## Resources
 - D3: https://d3js.org/d3.v4.min.js
