@@ -49,10 +49,10 @@
     "totalDistance": 6041
   }, {
   	"month": "Sep",
-  	"cost": 5,
-  	"energy": 38,
-  	"distance": 110,
-    "totalDistance": 6151
+  	"cost": 20,
+  	"energy": 148,
+  	"distance": 425,
+    "totalDistance": 6466
   }, {
   	"month": "Oct",
   	"cost": 0,
