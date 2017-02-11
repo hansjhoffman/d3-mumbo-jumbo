@@ -1,11 +1,5 @@
 [
   {
-  	"month": "Jan",
-  	"cost": 0,
-  	"energy": 0,
-  	"distance": 0,
-    "totalDistance": 0
-  }, {
   	"month": "Feb",
   	"cost": 7,
   	"energy": 44,
@@ -49,27 +43,33 @@
     "totalDistance": 6041
   }, {
   	"month": "Sep",
-  	"cost": 20,
-  	"energy": 148,
-  	"distance": 425,
-    "totalDistance": 6466
+  	"cost": 24,
+  	"energy": 181,
+  	"distance": 521,
+    "totalDistance": 6562
   }, {
   	"month": "Oct",
-  	"cost": 0,
-  	"energy": 0,
-  	"distance": 0,
-    "totalDistance": 0
+  	"cost": 43,
+  	"energy": 329,
+  	"distance": 949,
+    "totalDistance": 7511
   }, {
   	"month": "Nov",
-  	"cost": 0,
-  	"energy": 0,
-  	"distance": 0,
-    "totalDistance": 0
+  	"cost": 31,
+  	"energy": 232,
+  	"distance": 670,
+    "totalDistance": 8181
   }, {
   	"month": "Dec",
-  	"cost": 0,
-  	"energy": 0,
-  	"distance": 0,
-    "totalDistance": 0
+  	"cost": 39,
+  	"energy": 298,
+  	"distance": 861,
+    "totalDistance": 9042
+  }, {
+	"month": "Jan",
+	"cost": 47,
+	"energy": 358,
+	"distance": 1035,
+    "totalDistance": 10077
   }
 ]
